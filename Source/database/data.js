@@ -153,4 +153,19 @@ LinkedInApp.controller('PersonDetail', function($scope) {
      		'point': '73'
      	}
      };
+
+     $scope.projects = {
+          'first':
+          {
+               'name': 'BBDO Migration',
+               'date': 'November 2014 – March 2015',
+               'content': "This project is to migration current system on Sharepoint 2007, 2010 to Sharepoint 2013.",
+          },
+          'second':
+          {
+               'name': 'ORT',
+               'date': 'January 2014 – September 2014',
+               'content': "This project is to design and develop marketing management system using SharePoint for a German companies to provide a complete solution for marketing for many customers like Vodafone, Lufthansa, Monster, …<br><br>Techniques: C#, JavaScript, HTML, CSS, PowerShell",
+          },
+     }
  });
