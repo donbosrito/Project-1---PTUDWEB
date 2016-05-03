@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="LinkedInApp">
+<head>
+  <title>Băng Tú | Linkedin</title>
+  <meta charset="utf-8">
+  <meta kiNang="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/mycss.css">
+  <script src="./database/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.js"></script>
+  <script src="./database/app.js"></script>
+</head>
+
+<body ng-controller="HoSoCaNhan">
+	<div class ="Wrapper" >
+		<nav class="navbar navbar-inverse">
+			<div class="row">
+				<div >
+				<center>
+					<img  src="./picture/background.jpg" alt="background">
+				</center>
+				</div>
+			</div>
+		</nav>
+		<div class = "container">
+			<div class ="container_topCard">
+			<div class = "row">
+				<div class = "col-lg-4">
+					<img ng-src="{{profile.avatar}}" height="250" width="250" ng-alt="Avatar">
+				</div>
+				<div class = "col-lg-5">
+					<h1><b>{{profile.ten}} {{profile.ho}}</b></h1>
+					<h2>{{profile.jobs[0].chucVu}} at {{profile.jobs[0].congTy}}</h2>
+					<li>
+						<a href="#" title="">{{profile.diaChi}}</a> |
+						<a href="#" title="">Internet</a><br/>
+
+						<a href="#" title=""> Current</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" title=""> {{profile.jobs[0].congTy}}</a>,
+						<a href="#" title=""> {{profile.jobs[1].congTy}} </a>,
+						<a href="#" title=""> {{profile.jobs[2].congTy}} </a> <br/>
+						
+						<a href="#" title=""> Previous </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" title=""> {{profile.jobs[5].congTy}} </a>, 
+						<a href="#" title=""> {{profile.jobs[6].congTy}} </a>, 
+						<a href="#" title=""> {{profile.jobs[7].congTy}}</a> <br/>
+						
+						<a href="#" title=""> Education </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" title=""> {{profile.educations[0].tenTruong}}</a> <br/><br/>
+					</li> 
+					<button type="button" class="button2"> <b>Folowing </b></button> 
+					<button type="button" class="button1"> <b> </b></button>  
+				</div>
+					
+				<div class = "col-lg-3">
+					<div  class = "col-lg-4"/>
+					<div class ="col-lg-2">
+						<br/>
+						<img src="./picture/favicon.ico" height="20" width="20" alt="Icon">
+					</div>
+					<div class ="col-lg-5">
+						<h2>fluencer</h2>
+					</div>
+					
+				</div>
+
+			</div>	
+				<hr/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#" title="">{{profile.diachiWeb}}</a>
+				<br/><br/>
+			</div>
+		</div>
+		<!-- background-->
+		<div class = "container">
+		
+			<div class = "container_title_background">
+				<div class ="row">
+					<div class ="col-lg-1"> 
+					</div>
+					<div class ="col-lg-4"> 
+						<h3><b>Background </b></h3>
+					</div>
+				</div>
+			</div>
+			<div class = "container_background">
+				<div class = "row">
+					<div class = "col-lg-1">
+						<img src="./picture/summary.png" height="40" width="40" alt="tomTat">
+					</div>
+					<div class = "col-lg-4">
+						<h2> Summary </h2>
+					</div>
+				</div>
+				<h4 ng-bind-html="profile.tomTat">{{profile.tomTat}}</h4>
+			
+			</div>
+			<hr/>
+			<div class = "container_background">
+				<div class = "row">
+					<div class = "col-lg-1">
+						<img src="./picture/experience.png" height="40" width="40" alt="jobs">
+					</div>
+					<div class = "col-lg-4">
+						<h2> Experience </h2>
+					</div>
+				</div>
+				<div class = "row">
+					<div class = "col-lg-10">
+						<h4>
+							<a a href="#" title=""><h2><b>{{profile.jobs[0].chucVu}}</b></h2>	</a>
+							<a a href="#" title="">{{profile.jobs[0].congTy}}</a>
+							<h4> {{profile.jobs[0].thoiGianLamViec}} | {{profile.jobs[0].diaChiLamViec}}</h4>
+						</h4>
+					</div>
+					<div class = "col-lg-2">
+						<img ng-src="{{profile.jobs[0].logo}}" ng-alt="{{profile.jobs[0].congTy}}"/>
+					</div>
+				</div>
+				<h4 ng-bind-html="profile.jobs[0].moTa">{{profile.jobs[0].moTa}}</h4>
+				<br/><br/>
+				
+				<div class = "row">
+					<div class = "col-lg-10">
+						<h4>
+							<a a href="#" title=""><h2><b>{{profile.jobs[1].chucVu}}</b></h2>	</a>
+							<a a href="#" title="">{{profile.jobs[1].congTy}}</a>
+							<h4>{{profile.jobs[1].thoiGianLamViec}} | {{profile.jobs[1].diaChiLamViec}}</h4>
+						</h4>
+					</div>
+					<div class = "col-lg-2">
+						<img ng-src="{{profile.jobs[1].logo}}" ng-alt="{{profile.jobs[1].congTy}}"/>
+					</div>
+				</div>
+				<h4 ng-bind-html="profile.jobs[1].moTa">{{profile.jobs[1].moTa}}</h4>
+				<br/><br/>
+
+				<div class = "row">
+					<div class = "col-lg-10">
+						<h4>
+							<a a href="#" title=""><h2><b>{{profile.jobs[2].chucVu}}</b></h2>	</a>
+							<a a href="#" title="">{{profile.jobs[2].congTy}}</a>
+							<h4> {{profile.jobs[2].thoiGianLamViec}} | {{profile.jobs[2].diaChiLamViec}}</h4>
+						</h4>
+					</div>
+					<div class = "col-lg-2">
+						<img ng-src="{{profile.jobs[2].logo}}" ng-alt="{{profile.jobs[2].congTy}}"/>
+					</div>
+				</div>
+				<h4 ng-bind-html="profile.jobs[2].moTa">{{profile.jobs[2].moTa}}</h4>
+				<br/><br/>
+
+				<div class = "row">
+					<div class = "col-lg-10">
+						<h4>
+							<a a href="#" title=""><h2><b>{{profile.jobs[3].chucVu}}</b></h2>	</a>
+							<a a href="#" title="">{{profile.jobs[3].congTy}}</a>
+							<h4> {{profile.jobs[3].thoiGianLamViec}} | {{profile.jobs[3].diaChiLamViec}}</h4>
+						</h4>
+					</div>
+					<div class = "col-lg-2">
+						<img ng-src="{{profile.jobs[3].logo}}" ng-alt="{{profile.jobs[3].congTy}}"/>
+					</div>
+				</div>
+				<h4 ng-bind-html="profile.jobs[3].moTa">{{profile.jobs[3].moTa}}</h4>
+				<br/><br/>
+
+				<div class = "row">
+					<div class = "col-lg-10">
+						<h4>
+							<a a href="#" title=""><h2><b>{{profile.jobs[4].chucVu}}</b></h2></a>
+							<a a href="#" title="">{{profile.jobs[4].congTy}}</a>
+							<h4> {{profile.jobs[4].thoiGianLamViec}} | {{profile.jobs[4].diaChiLamViec}}</h4>
+						</h4>
+					</div>
+					<div class = "col-lg-2">
+						<img ng-src="{{profile.jobs[4].logo}}" ng-alt="{{profile.jobs[4].congTy}}"/>
+					</div>
+				</div>
+				<h4 ng-bind-html="profile.jobs[4].moTa">{{profile.jobs[4].moTa}}</h4>
+				<br/><br/>
+
+				<div class = "row">
+					<div class = "col-lg-10">
+						<h4>
+							<a a href="#" title=""><h2><b>{{profile.jobs[5].chucVu}}</b></h2>	</a>
+							<a a href="#" title="">{{profile.jobs[5].congTy}}</a>
+							<h4> {{profile.jobs[5].thoiGianLamViec}} | {{profile.jobs[5].diaChiLamViec}}</h4>
+						</h4>
+					</div>
+					<div class = "col-lg-2">
+						<img ng-src="{{profile.jobs[5].logo}}" ng-alt="{{profile.jobs[5].congTy}}"/>
+					</div>
+				</div>
+				<h4 ng-bind-html="profile.jobs[5].moTa">{{profile.jobs[5].moTa}}</h4>
+				<br/><br/>
+
+				<div class = "row">
+					<div class = "col-lg-10">
+						<h4>
+							<a a href="#" title=""><h2><b>{{profile.jobs[6].chucVu}}</b></h2>	</a>
+							<a a href="#" title="">{{profile.jobs[6].congTy}}</a>
+							<h4> {{profile.jobs[6].thoiGianLamViec}} | {{profile.jobs[6].diaChiLamViec}}</h4>
+						</h4>
+					</div>
+					<div class = "col-lg-2">
+						<img ng-src="{{profile.jobs[6].logo}}" ng-alt="{{profile.jobs[6].congTy}}"/>
+					</div>
+				</div>
+				<h4 ng-bind-html="profile.jobs[6].moTa">{{profile.jobs[6].moTa}}</h4>
+				<br/><br/>
+
+				<div class = "row">
+					<div class = "col-lg-10">
+						<h4>
+							<a a href="#" title=""><h2><b>{{profile.jobs[7].chucVu}}</b></h2>	</a>
+							<a a href="#" title="">{{profile.jobs[7].congTy}}</a>
+							<h4> {{profile.jobs[7].thoiGianLamViec}} | {{profile.jobs[7].diaChiLamViec}}</h4>
+						</h4>
+					</div>
+					<div class = "col-lg-2">
+						<img ng-src="{{profile.jobs[7].logo}}" ng-alt="{{profile.jobs[7].congTy}}"/>
+					</div>
+				</div>
+				<h4 ng-bind-html="profile.jobs[7].moTa">{{profile.jobs[7].moTa}}</h4>
+				<br/><br/>
+
+				<div class = "row">
+					<div class = "col-lg-10">
+						<h4>
+							<a a href="#" title=""><h2><b>{{profile.jobs[8].chucVu}}</b></h2></a>
+							<a a href="#" title="">{{profile.jobs[8].congTy}}</a>
+							<h4> {{profile.jobs[8].thoiGianLamViec}} | {{profile.jobs[8].diaChiLamViec}}</h4>
+						</h4>
+					</div>
+					<div class = "col-lg-2">
+						<img ng-src="{{profile.jobs[8].logo}}" ng-alt="{{profile.jobs[8].congTy}}"/>
+					</div>
+				</div>
+				<h4 ng-bind-html="profile.jobs[8].moTa">{{profile.jobs[8].moTa}}</h4>
+                <br/><br/>
+
+                <div class = "row">
+                    <div class = "col-lg-10">
+                        <h4>
+                            <a a href="#" title=""><h2><b>{{profile.jobs[9].chucVu}}</b></h2></a>
+                            <a a href="#" title="">{{profile.jobs[9].congTy}}</a>
+                            <h4> {{profile.jobs[9].thoiGianLamViec}} | {{profile.jobs[9].diaChiLamViec}}</h4>
+                        </h4>
+                    </div>
+                    <div class = "col-lg-2">
+                        <img ng-src="{{profile.jobs[9].logo}}" ng-alt="{{profile.jobs[9].congTy}}"/>
+                    </div>
+                </div>
+                <h4 ng-bind-html="profile.jobs[9].moTa">{{profile.jobs[9].moTa}}</h4>
+                <hr/>
+
+				<div class = "container_background">
+					<div class = "row">
+						<div class = "col-lg-1">
+							<img src="./picture/skill.png" height="40" width="40" alt="tomTat">
+						</div>
+						<div class = "col-lg-4">
+							<h2> Skills </h2>
+						</div>
+					</div>
+					
+					<h2> Top Skills </h2>
+					<button type="button" class ="button4">{{profile.skills[0].diem}}</button>
+					<button type="button" class ="button3"><h4>{{profile.skills[0].kiNang}}</h4></button> <br>
+					<button type="button" class ="button4">{{profile.skills[1].diem}}</button>
+					<button type="button" class ="button3"><h4>{{profile.skills[1].kiNang}}</h4></button> <br>
+					<button type="button" class ="button4">{{profile.skills[2].diem}}</button>
+					<button type="button" class ="button3"><h4>{{profile.skills[2].kiNang}}</h4></button> <br>
+					<button type="button" class ="button4">{{profile.skills[3].diem}}</button>
+					<button type="button" class ="button3"><h4>{{profile.skills[3].kiNang}}</h4></button> <br>
+					<button type="button" class ="button4">{{profile.skills[4].diem}}</button>
+					<button type="button" class ="button3"><h4>{{profile.skills[4].kiNang}}</h4></button> <br>
+					<button type="button" class ="button4">{{profile.skills[5].diem}}</button>
+					<button type="button" class ="button3"><h4>{{profile.skills[5].kiNang}}</h4></button> <br>
+					<button type="button" class ="button4">{{profile.skills[6].diem}}</button>
+					<button type="button" class ="button3"><h4>{{profile.skills[6].kiNang}}</h4> </button> <br>
+					<button type="button" class ="button4">{{profile.skills[7].diem}}</button>
+					<button type="button" class ="button3"><h4>{{profile.skills[7].kiNang}}</h4></button> <br>
+					<button type="button" class ="button4">{{profile.skills[8].diem}}</button>
+					<button type="button" class ="button3"><h4>{{profile.skills[8].kiNang}}</h4></button> <br>
+					<button type="button" class ="button4">{{profile.skills[9].diem}}</button>
+					<button type="button" class ="button3"><h4>{{profile.skills[9].kiNang}}</h4></button> <br>
+				</div>
+				<hr/>
+				<div class = "container_background">
+					<div class = "row">
+						<div class = "col-lg-1">
+							<img src="./picture/education.png" height="40" width="40" alt="./picture/education.png">
+						</div>
+						<div class = "col-lg-4">
+							<h2> Education </h2>
+						</div>
+					</div>
+					
+					<div class = "row">
+						<div class = "col-lg-10">
+							<a a href="#" title=""><h2><b> {{profile.educations[0].tenTruong}}</b></h2>	</a>
+							<h4>{{profile.educations[0].nganh}}<br> {{profile.educations[0].khoaHoc}}</h4>
+						</div>
+						<div class = "col-lg-2">
+							<img ng-src="{{profile.educations[0].logo}}" height="60" width="60" ng-alt="{{profile.educations[0].tenTruong}}"/>
+						</div>
+					</div>
+				</div>
+				<hr/>
+
+				<div class = "container_background">
+					<div class = "row">
+						<div class = "col-lg-1">
+							<img src="./picture/projects.png" height="40" width="40" alt="./picture/projects.png">
+						</div>
+						<div class = "col-lg-4">
+							<h2> Projects </h2>
+						</div>
+					</div>
+					
+					<div class = "row">
+						<div class = "col-lg-10">
+							<a a href="#" title=""><h2><b> {{profile.projects[0].tenDuAn}}</b></h2></a>
+							<h4>{{profile.projects[0].thoiGianLamViec}}</h4><br>
+							<h4 ng-bind-html="profile.projects[0].noiDung">{{profile.projects[0].noiDung}}</h4>
+						</div>
+					</div>
+
+					<div class = "row">
+						<div class = "col-lg-10">
+							<a a href="#" title=""><h2><b> {{profile.projects[1].tenDuAn}}</b></h2></a>
+							<h4>{{profile.projects[1].thoiGianLamViec}}</h4><br>
+							<h4 ng-bind-html="profile.projects[1].noiDung">{{profile.projects[1].noiDung}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
