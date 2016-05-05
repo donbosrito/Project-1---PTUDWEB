@@ -1,108 +1,352 @@
-@import url("bootstrap.min.css");
-h1 {	
-		font-size: 23px;
-	}
-h2 {	
-		font-size: 19px;
-		color: #696969;
-	}
-h3 {	
-		font-size: 15px;
-		color: white;
-	}
-h4 {	
-		font-size: 13px;
-		color: #696969;
-	}	
-a {	
-		text-decoration: none !important;
-		font-size: 12px;
-		color: #696969;
-	}
-	
-li {
-  list-style: none;
-}
-img {
-    float: center;
-}
-footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-
-.container{
-  width: 900px; 
-	background-color: white;
-	padding: 0px;
-	border: 2px solid #ccc;
+a {
+    text-decoration: none;
+    color: black;
 }
 
-.container_background{
-    width: 900px; 
-	padding: 30px;
+a:hover {
+    color: #0D47A1;
+    text-decoration: none;
 }
 
-.container_topCard{
-  position: relative;
-  overflow: hidden;
-  margin-top:-200px;
-  opacity: 0.97;
-  background-color: white !important;
-}
-.container_title_background{
-  width: 130px; 
-	height: 55px;
-	padding: 0px;
-	background-color: #363636;
-	border: 0px;
+body {
+    font-family: sans-serif;
+
 }
 
-.button2 {
-   width: 140px;
-   height: 35px;
-   background: #104E8B;
-   color: white;
-   border-radius: 3px;
-   border:1px solid black;
-   margin:0px;
-   vertical-align: middle;
-   }
-   
- 
-.button1 {
-   width: 40px;
-   height: 35px;
-   background: #104E8B;
-   color: white;
-   border-radius: 3px;
-   border:1px solid black;
-   margin:-4px;
-   vertical-align: middle;
-   }   
-   
-.button3 {    
-	border: none;
-   width: default;
-   height: 35px;
-   background: #DCDCDC;
-   color: black;
-   margin:0px;
-   border-radius:3px;
-   vertical-align: middle;
-   margin: 2px;
-   
-   }
-   
- .button4 {
-	border: none;
-   width: default;
-   height: 35px;
-   background: #009ACD;
-   color: white;
-   border-radius:3px;
-   margin-right:-6px;
-   vertical-align: middle;
-   }
-.Wrapper { background-color: #D3D3D3; font-family: Arial;}
+.wrapper {
+    padding-top: 220px;
+    background: url("../picture/background.jpg") no-repeat;
+    background-color: whitesmoke;
+    padding-bottom: 30px;
+}
+
+.CVcontainer {
+    width: 960px;
+    background-color: transparent;
+    margin: 0 auto;
+}
+
+#topcard {
+    background-color: rgba(255, 255, 255, 0.95);
+    overflow: visible;
+}
+
+#avatar {
+    width: 240px;
+    height: 240px;
+}
+
+.fluence-icon {
+    width: 90px;
+    height: 22px;
+    background-image: url("../picture/fluencer.png");
+    float: right !important;
+    margin-right: 20px;
+}
+
+
+
+.personInfo a {
+    font-size: 13px;
+}
+
+.personInfo h1 {
+    font-size: 22px;
+    margin: 20px 5px 5px 5px;
+}
+
+.personInfo h2 {
+    font-size: 18px;
+    font-weight: 500;
+    color: grey;
+    margin:5px;
+}
+
+.personInfo ul {
+    margin: 5px;
+    padding: 0px;
+}
+
+.personInfo ul li {
+    list-style: none;
+    display: inline-block;
+}
+
+.personInfo ul li:first-child {
+    border-right: 1px solid grey;
+    padding-right: 5px;
+}
+
+.personInfo ul li a {
+    color: grey;
+}
+
+.tittle {
+    color: grey;
+}
+
+#experience dt{
+    text-align: left;
+    width: 80px;
+}
+
+#experience dt a:hover {
+    color: grey;
+}
+
+#experience dd{
+    margin-left: 90px;
+}
+
+#info {
+    padding-left: 30px;
+    display: table-cell;
+    vertical-align: top;
+    zoom: 1;
+    width: 10000px;
+}
+
+.connect {
+    font-size: 13px;
+    margin-top: 0px;
+    padding-left: 10px;
+    float:left;
+}
+
+.connect a {
+    color: #0D47A1;
+    font-weight: 700;
+}
+
+.connect a:hover {
+    text-decoration: underline;
+}
+
+#btnFollow {
+    float:left;
+}
+
+#dropdown {
+    position: absolute;
+}
+
+.followers {
+    width: 90px;
+    height: 22px;
+    float: right !important;
+    margin-right: 20px;
+    text-align: right;
+}
+
+.followers h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.followers h5 {
+    margin-top: -10px;
+    color: grey;
+    font-size: 11px;
+}
+
+#contact {
+    background: whitesmoke;
+    height: 40px;
+    border-radius: 0%;
+    margin: 0px;
+}
+
+#webAddress {
+    vertical-align: middle;
+    padding: 8px 0px 0px 20px;
+}
+
+#webAddress>a {
+    color: grey;
+    font-size: 11px;
+    padding-left: 20px;
+}
+
+#webAddress>a:hover {
+    color: #0D47A1;
+}
+
+#btnContact{
+    float: right;
+    border-left: 1px solid #ccc;
+    border-radius: 0px;
+    width: 130px;
+    height:40px;
+    margin-top: -9px;
+    background-color: #ececec;
+    font-size: 11px;
+}
+
+#btnContact:hover{
+    color: #0D47A1;
+}
+
+#background {
+    margin-top: 20px;
+    border-radius: 0px;
+}
+
+#background-header {
+    width: 130px;
+    border: none;
+    background-color: #434649;
+    color: white;
+    border-radius: 0px;
+
+}
+
+#background-header h3 {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.background-tittle h3{
+    display: inline-block;
+    color: #434649;
+    font-size: 18px;
+}
+
+#background-body {
+    padding: 30px;
+    color: #434649;
+}
+
+.experience-content {
+    padding: 30px 0px 30px 0px;
+}
+
+.experience-content .logo {
+    margin-top: 20px;
+    float: right;
+}
+
+.experience-content .position {
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+}
+
+.experience-content .position:hover {
+    color: #0D47A1;
+}
+
+.experience-content .company {
+    font-size: 16px;
+}
+
+.education-content {
+    padding: 30px 0px 30px 0px;
+}
+
+.education-content .logo {
+    margin-top: 20px;
+    width: 60px;
+    height: 60px;
+    float: right;
+}
+
+.education-content .school {
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+}
+
+.education-content .school:hover {
+    color: #0D47A1;
+}
+
+.education-content .falcuty {
+    font-size: 16px;
+}
+
+.btn-skill {
+    padding: 5px;
+}
+
+.another-skill {
+    display: inline;
+}
+
+.project-content {
+    padding-top: 10px;
+}
+
+.project-content .name {
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+}
+
+#btn-edit-person-info {
+    display: none;
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+.personInfo:hover #btn-edit-person-info {
+    display: inline-block;
+}
+
+#btn-edit-summary {
+    float:right;
+    display: none;
+}
+
+.Summary:hover #btn-edit-summary {
+    display: block;
+}
+
+#btn-edit-experience {
+    display: none;
+    float:right;
+}
+
+.experience-content:hover #btn-edit-experience {
+    display: block;
+}
+
+#btn-edit-top-skill {
+    display: none;
+    float: right;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.top-skill:hover #btn-edit-top-skill {
+    display: block;
+}
+
+#btn-edit-another-skill {
+    display: none;
+    float: right;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.another-skill:hover #btn-edit-another-skill {
+    display: block;
+}
+
+#btn-edit-education {
+    display: none;
+    float:right;
+}
+
+.education-content:hover #btn-edit-education {
+    display: block;
+}
+
+#btn-edit-project {
+    display: none;
+    float:right;
+}
+
+.project-content:hover #btn-edit-project {
+    display: block;
+}

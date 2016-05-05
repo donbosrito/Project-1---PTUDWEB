@@ -1,342 +1,403 @@
 ﻿<!DOCTYPE html>
 <html lang="en" ng-app="LinkedInApp">
 <head>
-  <title>Băng Tú | Linkedin</title>
-  <meta charset="utf-8">
-  <meta kiNang="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/mycss.css">
-  <script src="./database/angular.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.js"></script>
-  <script src="./database/app.js"></script>
+	<title>Jeff Weiner | Linkedin</title>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="./css/font-awesome.css">
+	<link rel="stylesheet" href="./css/font-awesome.min.css">
+	<link rel="stylesheet" href="./css/bootstrap.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="./css/mycss.css">
+
 </head>
+<body  ng-controller="profile">
+	<div class="wrapper">
+		<div class="CVcontainer">
+			<div id="topcard" class="media">
+				<div class="media-left media-middle ">
+					<a href="#">
+						<img id="avatar" class="media-object" ng-src="{{profile.avatar}}" title="{{profile.firstname}} {{profile.lastname}}">
+					</a>
+				</div>
+				<div id="info">
+					<div class="personInfo">
+						<a href="#" class="fluence-icon" title="Jeff is a LinkedIn Influencer"></a>
+                        <div class="name">
+                            <h1>
+                                {{profile.firstname}} {{profile.lastname}}
+                                <a id="btn-edit-person-info" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil"></i></a>
+                            </h1>
 
-<body ng-controller="HoSoCaNhan">
-	<div class ="Wrapper" >
-		<nav class="navbar navbar-inverse">
-			<div class="row">
-				<div >
-				<center>
-					<img  src="./picture/background.jpg" alt="background">
-				</center>
+                        </div>
+
+                        <!--Form change personal information-->
+                        <div id="edit-name" class="modal fade" role="dialog" data-backdrop="static">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Edit personal information</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="firstname">First name</label>
+                                                <input type="text" class="form-control" id="firstname" ng-model="subProfile.firstname">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="lastname">Last name</label>
+                                                <input type="text" class="form-control" id="lastname" ng-model="subProfile.lastname">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="address">Address</label>
+                                                <input type="text" class="form-control" id="address" ng-model="subProfile.address">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry">Industry</label>
+                                                <input type="text" class="form-control" id="industry" ng-model="subProfile.industry">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="current-position">Current position</label>
+                                                <select class="form-control" id="current-position"
+                                                        ng-model="subProfile.currentPosition">
+                                                    <option ng-repeat="job in subProfile.jobs" value="{{job.position}}">{{job.position}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="current-company">Current company</label>
+                                                <select class="form-control" id="current-company"
+                                                        ng-model="subProfile.currentCompany">
+                                                    <option ng-repeat="job in subProfile.jobs" value="{{job.company}}">{{job.company}}</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save()">Save</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reset()">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+						<h2>{{profile.currentPosition}} at {{profile.currentCompany}}</h2>
+						<ul>
+							<li><a href="#">{{profile.address}}</a></li>
+							<li><a href="#">{{profile.industry}}</a></li>
+						</ul>
+						<dl id="experience" class="dl-horizontal">
+							<dt><a href="#" class="tittle">Current</a></dt>
+							<dd>
+								<a href="#">{{profile.jobs[0].company}}</a>,
+								<a href="#">{{profile.jobs[1].company}}</a>,
+								<a href="#">{{profile.jobs[2].company}}</a>
+							</dd>
+							<dt><a href="#" class="tittle">Previous</a></dt>
+							<dd>
+								<a href="#">{{profile.jobs[5].company}}</a>,
+								<a href="#">{{profile.jobs[6].company}}</a>,
+								<a href="#">{{profile.jobs[7].company}}</a>
+							</dd>
+							<dt><a href="#" class="tittle">Education</a></dt>
+							<dd><a href="#">{{profile.educations[0].school}}</a></dd>
+
+						</dl>
+					</div>
+
+					<div id="btnFollow" class="btn-group">
+						<button type="button" class="btn btn-primary">Follow</button>
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul id="dropdown" class="dropdown-menu">
+							<li><a href="#">View recent activity</a></li>
+							<li><a href="#">Send {{profile.firstname}} InMail</a></li>
+							<li><a href="#">Connect</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Share profile</a></li>
+							<li><a href="#">Save to PDF</a></li>
+							<li><a href="#">Block or report</a></li>
+						</ul>
+					</div>
+					<div class="connect">
+						<div>Know {{profile.firstname}}?</div>
+						<a href="#">Connect</a>
+					</div>
+
+					<div class="followers">
+						<h3>{{profile.followers}}</h3>
+						<h5>followers</h5>
+					</div>
 				</div>
 			</div>
-		</nav>
-		<div class = "container">
-			<div class ="container_topCard">
-			<div class = "row">
-				<div class = "col-lg-4">
-					<img ng-src="{{profile.avatar}}" height="250" width="250" ng-alt="Avatar">
-				</div>
-				<div class = "col-lg-5">
-					<h1><b>{{profile.ten}} {{profile.ho}}</b></h1>
-					<h2>{{profile.jobs[0].chucVu}} at {{profile.jobs[0].congTy}}</h2>
-					<li>
-						<a href="#" title="">{{profile.diaChi}}</a> |
-						<a href="#" title="">Internet</a><br/>
 
-						<a href="#" title=""> Current</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#" title=""> {{profile.jobs[0].congTy}}</a>,
-						<a href="#" title=""> {{profile.jobs[1].congTy}} </a>,
-						<a href="#" title=""> {{profile.jobs[2].congTy}} </a> <br/>
-						
-						<a href="#" title=""> Previous </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#" title=""> {{profile.jobs[5].congTy}} </a>, 
-						<a href="#" title=""> {{profile.jobs[6].congTy}} </a>, 
-						<a href="#" title=""> {{profile.jobs[7].congTy}}</a> <br/>
-						
-						<a href="#" title=""> Education </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#" title=""> {{profile.educations[0].tenTruong}}</a> <br/><br/>
-					</li> 
-					<button type="button" class="button2"> <b>Folowing </b></button> 
-					<button type="button" class="button1"> <b> </b></button>  
-				</div>
-					
-				<div class = "col-lg-3">
-					<div  class = "col-lg-4"/>
-					<div class ="col-lg-2">
-						<br/>
-						<img src="./picture/favicon.ico" height="20" width="20" alt="Icon">
-					</div>
-					<div class ="col-lg-5">
-						<h2>fluencer</h2>
-					</div>
-					
-				</div>
-
-			</div>	
-				<hr/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#" title="">{{profile.diachiWeb}}</a>
-				<br/><br/>
-			</div>
-		</div>
-		<!-- background-->
-		<div class = "container">
-		
-			<div class = "container_title_background">
-				<div class ="row">
-					<div class ="col-lg-1"> 
-					</div>
-					<div class ="col-lg-4"> 
-						<h3><b>Background </b></h3>
-					</div>
+			<div id="contact" class="panel panel-default">
+				<div id="webAddress" class="panel-body">
+					<a href="#"><i class="fa fa-linkedin-square"></i> {{profile.webAddress}}</a>
+					<button id="btnContact" type="button" class="btn btn-default">
+						<i class="fa fa-fax" aria-hidden="true"></i> Contact Info</button>
 				</div>
 			</div>
-			<div class = "container_background">
-				<div class = "row">
-					<div class = "col-lg-1">
-						<img src="./picture/summary.png" height="40" width="40" alt="tomTat">
-					</div>
-					<div class = "col-lg-4">
-						<h2> Summary </h2>
-					</div>
-				</div>
-				<h4 ng-bind-html="profile.tomTat">{{profile.tomTat}}</h4>
-			
-			</div>
-			<hr/>
-			<div class = "container_background">
-				<div class = "row">
-					<div class = "col-lg-1">
-						<img src="./picture/experience.png" height="40" width="40" alt="jobs">
-					</div>
-					<div class = "col-lg-4">
-						<h2> Experience </h2>
-					</div>
-				</div>
-				<div class = "row">
-					<div class = "col-lg-10">
-						<h4>
-							<a a href="#" title=""><h2><b>{{profile.jobs[0].chucVu}}</b></h2>	</a>
-							<a a href="#" title="">{{profile.jobs[0].congTy}}</a>
-							<h4> {{profile.jobs[0].thoiGianLamViec}} | {{profile.jobs[0].diaChiLamViec}}</h4>
-						</h4>
-					</div>
-					<div class = "col-lg-2">
-						<img ng-src="{{profile.jobs[0].logo}}" ng-alt="{{profile.jobs[0].congTy}}"/>
-					</div>
-				</div>
-				<h4 ng-bind-html="profile.jobs[0].moTa">{{profile.jobs[0].moTa}}</h4>
-				<br/><br/>
-				
-				<div class = "row">
-					<div class = "col-lg-10">
-						<h4>
-							<a a href="#" title=""><h2><b>{{profile.jobs[1].chucVu}}</b></h2>	</a>
-							<a a href="#" title="">{{profile.jobs[1].congTy}}</a>
-							<h4>{{profile.jobs[1].thoiGianLamViec}} | {{profile.jobs[1].diaChiLamViec}}</h4>
-						</h4>
-					</div>
-					<div class = "col-lg-2">
-						<img ng-src="{{profile.jobs[1].logo}}" ng-alt="{{profile.jobs[1].congTy}}"/>
-					</div>
-				</div>
-				<h4 ng-bind-html="profile.jobs[1].moTa">{{profile.jobs[1].moTa}}</h4>
-				<br/><br/>
 
-				<div class = "row">
-					<div class = "col-lg-10">
-						<h4>
-							<a a href="#" title=""><h2><b>{{profile.jobs[2].chucVu}}</b></h2>	</a>
-							<a a href="#" title="">{{profile.jobs[2].congTy}}</a>
-							<h4> {{profile.jobs[2].thoiGianLamViec}} | {{profile.jobs[2].diaChiLamViec}}</h4>
-						</h4>
-					</div>
-					<div class = "col-lg-2">
-						<img ng-src="{{profile.jobs[2].logo}}" ng-alt="{{profile.jobs[2].congTy}}"/>
-					</div>
+			<div id="background" class="panel panel-default">
+				<div id="background-header" class="panel-heading">
+					<h3 class="panel-title">Background</h3>
 				</div>
-				<h4 ng-bind-html="profile.jobs[2].moTa">{{profile.jobs[2].moTa}}</h4>
-				<br/><br/>
+				<div id="background-body" class="panel-body">
+					<div class="Summary">
+						<div class="background-tittle">
+							<img src="./picture/summary.png"/>
+                            <a id="btn-edit-summary" data-toggle="modal" data-target="#edit-summary"><i class="fa fa-pencil"></i></a>
+							<h3>Summary</h3>
+						</div>
+						<p class="summary-content" ng-bind-html="profile.summary">{{profile.summary}}</p>
+					</div>
 
-				<div class = "row">
-					<div class = "col-lg-10">
-						<h4>
-							<a a href="#" title=""><h2><b>{{profile.jobs[3].chucVu}}</b></h2>	</a>
-							<a a href="#" title="">{{profile.jobs[3].congTy}}</a>
-							<h4> {{profile.jobs[3].thoiGianLamViec}} | {{profile.jobs[3].diaChiLamViec}}</h4>
-						</h4>
-					</div>
-					<div class = "col-lg-2">
-						<img ng-src="{{profile.jobs[3].logo}}" ng-alt="{{profile.jobs[3].congTy}}"/>
-					</div>
-				</div>
-				<h4 ng-bind-html="profile.jobs[3].moTa">{{profile.jobs[3].moTa}}</h4>
-				<br/><br/>
-
-				<div class = "row">
-					<div class = "col-lg-10">
-						<h4>
-							<a a href="#" title=""><h2><b>{{profile.jobs[4].chucVu}}</b></h2></a>
-							<a a href="#" title="">{{profile.jobs[4].congTy}}</a>
-							<h4> {{profile.jobs[4].thoiGianLamViec}} | {{profile.jobs[4].diaChiLamViec}}</h4>
-						</h4>
-					</div>
-					<div class = "col-lg-2">
-						<img ng-src="{{profile.jobs[4].logo}}" ng-alt="{{profile.jobs[4].congTy}}"/>
-					</div>
-				</div>
-				<h4 ng-bind-html="profile.jobs[4].moTa">{{profile.jobs[4].moTa}}</h4>
-				<br/><br/>
-
-				<div class = "row">
-					<div class = "col-lg-10">
-						<h4>
-							<a a href="#" title=""><h2><b>{{profile.jobs[5].chucVu}}</b></h2>	</a>
-							<a a href="#" title="">{{profile.jobs[5].congTy}}</a>
-							<h4> {{profile.jobs[5].thoiGianLamViec}} | {{profile.jobs[5].diaChiLamViec}}</h4>
-						</h4>
-					</div>
-					<div class = "col-lg-2">
-						<img ng-src="{{profile.jobs[5].logo}}" ng-alt="{{profile.jobs[5].congTy}}"/>
-					</div>
-				</div>
-				<h4 ng-bind-html="profile.jobs[5].moTa">{{profile.jobs[5].moTa}}</h4>
-				<br/><br/>
-
-				<div class = "row">
-					<div class = "col-lg-10">
-						<h4>
-							<a a href="#" title=""><h2><b>{{profile.jobs[6].chucVu}}</b></h2>	</a>
-							<a a href="#" title="">{{profile.jobs[6].congTy}}</a>
-							<h4> {{profile.jobs[6].thoiGianLamViec}} | {{profile.jobs[6].diaChiLamViec}}</h4>
-						</h4>
-					</div>
-					<div class = "col-lg-2">
-						<img ng-src="{{profile.jobs[6].logo}}" ng-alt="{{profile.jobs[6].congTy}}"/>
-					</div>
-				</div>
-				<h4 ng-bind-html="profile.jobs[6].moTa">{{profile.jobs[6].moTa}}</h4>
-				<br/><br/>
-
-				<div class = "row">
-					<div class = "col-lg-10">
-						<h4>
-							<a a href="#" title=""><h2><b>{{profile.jobs[7].chucVu}}</b></h2>	</a>
-							<a a href="#" title="">{{profile.jobs[7].congTy}}</a>
-							<h4> {{profile.jobs[7].thoiGianLamViec}} | {{profile.jobs[7].diaChiLamViec}}</h4>
-						</h4>
-					</div>
-					<div class = "col-lg-2">
-						<img ng-src="{{profile.jobs[7].logo}}" ng-alt="{{profile.jobs[7].congTy}}"/>
-					</div>
-				</div>
-				<h4 ng-bind-html="profile.jobs[7].moTa">{{profile.jobs[7].moTa}}</h4>
-				<br/><br/>
-
-				<div class = "row">
-					<div class = "col-lg-10">
-						<h4>
-							<a a href="#" title=""><h2><b>{{profile.jobs[8].chucVu}}</b></h2></a>
-							<a a href="#" title="">{{profile.jobs[8].congTy}}</a>
-							<h4> {{profile.jobs[8].thoiGianLamViec}} | {{profile.jobs[8].diaChiLamViec}}</h4>
-						</h4>
-					</div>
-					<div class = "col-lg-2">
-						<img ng-src="{{profile.jobs[8].logo}}" ng-alt="{{profile.jobs[8].congTy}}"/>
-					</div>
-				</div>
-				<h4 ng-bind-html="profile.jobs[8].moTa">{{profile.jobs[8].moTa}}</h4>
-                <br/><br/>
-
-                <div class = "row">
-                    <div class = "col-lg-10">
-                        <h4>
-                            <a a href="#" title=""><h2><b>{{profile.jobs[9].chucVu}}</b></h2></a>
-                            <a a href="#" title="">{{profile.jobs[9].congTy}}</a>
-                            <h4> {{profile.jobs[9].thoiGianLamViec}} | {{profile.jobs[9].diaChiLamViec}}</h4>
-                        </h4>
+                    <div id="edit-summary" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Edit summary</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="summary">Summary</label>
+                                            <textarea  class="form-control" rows="20" id="summary" ng-model="subProfile.summary"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save()">Save</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reset()">Close</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class = "col-lg-2">
-                        <img ng-src="{{profile.jobs[9].logo}}" ng-alt="{{profile.jobs[9].congTy}}"/>
+
+					<hr>
+					<div class="experience">
+						<div class="background-tittle">
+							<img src="./picture/experience.png"/>
+							<h3>Experience</h3>
+						</div>
+						<div class="experience-content" ng-repeat="jobs in profile.jobs">
+                            <a id="btn-edit-experience" data-toggle="modal" data-target="#edit-experience" ng-click="getSelectedJob($index)"><i class="fa fa-pencil"></i></a>
+							<img class="logo" ng-src="{{jobs.logo}}"/>
+							<a class="position" href="#">{{jobs.position}}</a>
+                            <br>
+							<a class="company">{{jobs.company}}</a>
+							<h5 class="time">{{jobs.time}}</h5>
+							<p class="description" ng-bind-html="jobs.description">{{jobs.description}}</p>
+						</div>
+                        <div id="edit-experience" class="modal fade" role="dialog" data-backdrop="static">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Edit experience</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="position">Position</label>
+                                                <input type="text" class="form-control" id="position" ng-model="selectedJob.position">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="company">Company</label>
+                                                <input type="text" class="form-control" id="company" ng-model="selectedJob.company">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="time-job">Time</label>
+                                                <input type="text" class="form-control" id="time-job" ng-model="selectedJob.time">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="description">Description</label>
+                                                <textarea  class="form-control" rows="10" id="description" ng-model="selectedJob.description"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save()">Save</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reset()">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+					<hr>
+					<div class="skill">
+						<div class="background-tittle">
+							<img src="./picture/skill.png"/>
+							<h3>Skill</h3>
+                            <div class="topSkill">
+                                <h4>Top Skills</h4>
+                                <div class="skill-content top-skill" ng-repeat="topSkills in profile.topSkills">
+                                    <div class="btn-group btn-group-sm btn-skill" role="group" aria-label="skill">
+                                        <button type="button" class="btn btn-primary">{{topSkills.point}}</button>
+                                        <a id="btn-edit-top-skill" data-toggle="modal" data-target="#edit-top-skill" ng-click="getSelectedTopSkill($index)"><i class="fa fa-pencil"></i></a>
+                                        <button type="button" class="btn btn-default">{{topSkills.skill}}</button>
+                                    </div>
+                                </div>
+
+                                <div id="edit-top-skill" class="modal fade" role="dialog" data-backdrop="static">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Edit skill</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="top-skill">Skill</label>
+                                                        <input type="text" class="form-control" id="top-skill" ng-model="selectedTopSkill.skill">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="top-point">Point</label>
+                                                        <input type="text" class="form-control" id="top-point" ng-model="selectedTopSkill.point">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveTopSkill()">Save</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reset()">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="anotherSkill">
+                                <h4>{{profile.firstname}} also knows about...</h4>
+                                <div class="skill-content another-skill" ng-repeat="anotherSkills in profile.anotherSkills">
+                                    <div class="btn-group btn-group-sm btn-skill" role="group" aria-label="skill">
+                                        <button type="button" class="btn btn-primary">{{anotherSkills.point}}</button>
+                                        <a id="btn-edit-another-skill" data-toggle="modal" data-target="#edit-another-skill" ng-click="getSelectedAnotherSkill($index)"><i class="fa fa-pencil"></i></a>
+                                        <button type="button" class="btn btn-default">{{anotherSkills.skill}}</button>
+                                    </div>
+                                </div>
+
+                                <div id="edit-another-skill" class="modal fade" role="dialog" data-backdrop="static">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Edit skill</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="another-skill">Skill</label>
+                                                        <input type="text" class="form-control" id="another-skill" ng-model="selectedAnotherSkill.skill">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="another-point">Point</label>
+                                                        <input type="text" class="form-control" id="another-point" ng-model="selectedAnotherSkill.point">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveAnotherSkill()">Save</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reset()">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+					</div>
+					<hr>
+					<div class="education">
+						<div class="background-tittle">
+							<img src="./picture/education.png"/>
+							<h3>Education</h3>
+							<div class="education-content" ng-repeat="educations in profile.educations">
+                                <a id="btn-edit-education" data-toggle="modal" data-target="#edit-education" ng-click="getSelectedEducation($index)"><i class="fa fa-pencil"></i></a>
+								<img class="logo" ng-src="{{educations.logo}}"/>
+								<a class="school" href="#">{{educations.school}}</a>
+								<h4 class="falcuty">{{educations.falcuty}}</h4>
+								<h5 class="time">{{educations.time}}</h5>
+							</div>
+
+                            <div id="edit-education" class="modal fade" role="dialog" data-backdrop="static">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Edit education</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="school">School</label>
+                                                    <input type="text" class="form-control" id="school" ng-model="selectedEducation.school">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="falcuty">Falcuty</label>
+                                                    <input type="text" class="form-control" id="falcuty" ng-model="selectedEducation.falcuty">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="time-education">Time</label>
+                                                    <input type="text" class="form-control" id="time-education" ng-model="selectedEducation.time">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save()">Save</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reset()">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+					</div>
+                    <hr>
+                    <div class="project">
+                        <div class="background-tittle">
+                            <img src="./picture/projects.png"/>
+                            <h3>Project</h3>
+                            <div class="project-content" ng-repeat="projects in profile.projects">
+                                <a id="btn-edit-project" data-toggle="modal" data-target="#edit-project" ng-click="getSelectedProject($index)"><i class="fa fa-pencil"></i></a>
+                                <h3 class="name">{{projects.project}}</h3>
+                                <h5 class="time">{{projects.time}}</h5>
+                                <p class="content" ng-bind-html="projects.content">{{projects.content}}</p>
+                            </div>
+
+                            <div id="edit-project" class="modal fade" role="dialog" data-backdrop="static">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Edit project</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="project">Project</label>
+                                                    <input type="text" class="form-control" id="project" ng-model="selectedProject.project">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="time-project">Time</label>
+                                                    <input type="text" class="form-control" id="time-project" ng-model="selectedProject.time">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="content">Content</label>
+                                                    <textarea  class="form-control" rows="10" id="content" ng-model="selectedProject.content"></textarea>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save()">Save</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reset()">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <h4 ng-bind-html="profile.jobs[9].moTa">{{profile.jobs[9].moTa}}</h4>
-                <hr/>
-
-				<div class = "container_background">
-					<div class = "row">
-						<div class = "col-lg-1">
-							<img src="./picture/skill.png" height="40" width="40" alt="tomTat">
-						</div>
-						<div class = "col-lg-4">
-							<h2> Skills </h2>
-						</div>
-					</div>
-					
-					<h2> Top Skills </h2>
-					<button type="button" class ="button4">{{profile.skills[0].diem}}</button>
-					<button type="button" class ="button3"><h4>{{profile.skills[0].kiNang}}</h4></button> <br>
-					<button type="button" class ="button4">{{profile.skills[1].diem}}</button>
-					<button type="button" class ="button3"><h4>{{profile.skills[1].kiNang}}</h4></button> <br>
-					<button type="button" class ="button4">{{profile.skills[2].diem}}</button>
-					<button type="button" class ="button3"><h4>{{profile.skills[2].kiNang}}</h4></button> <br>
-					<button type="button" class ="button4">{{profile.skills[3].diem}}</button>
-					<button type="button" class ="button3"><h4>{{profile.skills[3].kiNang}}</h4></button> <br>
-					<button type="button" class ="button4">{{profile.skills[4].diem}}</button>
-					<button type="button" class ="button3"><h4>{{profile.skills[4].kiNang}}</h4></button> <br>
-					<button type="button" class ="button4">{{profile.skills[5].diem}}</button>
-					<button type="button" class ="button3"><h4>{{profile.skills[5].kiNang}}</h4></button> <br>
-					<button type="button" class ="button4">{{profile.skills[6].diem}}</button>
-					<button type="button" class ="button3"><h4>{{profile.skills[6].kiNang}}</h4> </button> <br>
-					<button type="button" class ="button4">{{profile.skills[7].diem}}</button>
-					<button type="button" class ="button3"><h4>{{profile.skills[7].kiNang}}</h4></button> <br>
-					<button type="button" class ="button4">{{profile.skills[8].diem}}</button>
-					<button type="button" class ="button3"><h4>{{profile.skills[8].kiNang}}</h4></button> <br>
-					<button type="button" class ="button4">{{profile.skills[9].diem}}</button>
-					<button type="button" class ="button3"><h4>{{profile.skills[9].kiNang}}</h4></button> <br>
-				</div>
-				<hr/>
-				<div class = "container_background">
-					<div class = "row">
-						<div class = "col-lg-1">
-							<img src="./picture/education.png" height="40" width="40" alt="./picture/education.png">
-						</div>
-						<div class = "col-lg-4">
-							<h2> Education </h2>
-						</div>
-					</div>
-					
-					<div class = "row">
-						<div class = "col-lg-10">
-							<a a href="#" title=""><h2><b> {{profile.educations[0].tenTruong}}</b></h2>	</a>
-							<h4>{{profile.educations[0].nganh}}<br> {{profile.educations[0].khoaHoc}}</h4>
-						</div>
-						<div class = "col-lg-2">
-							<img ng-src="{{profile.educations[0].logo}}" height="60" width="60" ng-alt="{{profile.educations[0].tenTruong}}"/>
-						</div>
-					</div>
-				</div>
-				<hr/>
-
-				<div class = "container_background">
-					<div class = "row">
-						<div class = "col-lg-1">
-							<img src="./picture/projects.png" height="40" width="40" alt="./picture/projects.png">
-						</div>
-						<div class = "col-lg-4">
-							<h2> Projects </h2>
-						</div>
-					</div>
-					
-					<div class = "row">
-						<div class = "col-lg-10">
-							<a a href="#" title=""><h2><b> {{profile.projects[0].tenDuAn}}</b></h2></a>
-							<h4>{{profile.projects[0].thoiGianLamViec}}</h4><br>
-							<h4 ng-bind-html="profile.projects[0].noiDung">{{profile.projects[0].noiDung}}</h4>
-						</div>
-					</div>
-
-					<div class = "row">
-						<div class = "col-lg-10">
-							<a a href="#" title=""><h2><b> {{profile.projects[1].tenDuAn}}</b></h2></a>
-							<h4>{{profile.projects[1].thoiGianLamViec}}</h4><br>
-							<h4 ng-bind-html="profile.projects[1].noiDung">{{profile.projects[1].noiDung}}</h4>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+    <script src="./js/jquery-1.12.3.min.js"></script>
+    <script src="./js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/angular-sanitize.js"></script>
+    <script src="./js/app.js"></script>
 </body>
 </html>
