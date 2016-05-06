@@ -4,4 +4,6 @@
 \margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 T\'e0i li\uc0\u7879 u tham kh\u7843 o:	{\field{\*\fldinst{HYPERLINK "https://docs.angularjs.org/tutorial"}}{\fldrslt https://docs.angularjs.org/tutorial}}}
+\f0\fs24 \cf0 T\'e0i li\uc0\u7879 u tham kh\u7843 o:	{\field{\*\fldinst{HYPERLINK "https://docs.angularjs.org/tutorial"}}{\fldrslt https://docs.angularjs.org/tutorial}}\
+			{\field{\*\fldinst{HYPERLINK "http://getbootstrap.com/"}}{\fldrslt http://getbootstrap.com/}}\
+			{\field{\*\fldinst{HYPERLINK "https://fortawesome.github.io/Font-Awesome/"}}{\fldrslt https://fortawesome.github.io/Font-Awesome/}}}
