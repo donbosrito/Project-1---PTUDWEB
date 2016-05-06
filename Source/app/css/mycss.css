@@ -85,16 +85,16 @@ body {
     color: grey;
 }
 
-#experience dt{
+#dlexperience dt{
     text-align: left;
     width: 80px;
 }
 
-#experience dt a:hover {
+#dlexperience dt a:hover {
     color: grey;
 }
 
-#experience dd{
+#dlexperience dd{
     margin-left: 90px;
 }
 
@@ -294,6 +294,7 @@ body {
 }
 
 #btn-edit-summary {
+    font-size: 20px;
     float:right;
     display: none;
 }
@@ -303,15 +304,44 @@ body {
 }
 
 #btn-edit-experience {
+    font-size: 20px;
     display: none;
     float:right;
+    margin-right: 5px;
 }
 
 .experience-content:hover #btn-edit-experience {
     display: block;
 }
 
+#btn-remove-experience {
+    font-size: 20px;
+    display: none;
+    float:right;
+}
+
+.experience-content:hover #btn-remove-experience {
+    display: block;
+}
+
+#btn-add-experience {
+    display: none;
+}
+
+.experience:hover #btn-add-experience {
+    display: block;
+}
+
 #btn-edit-top-skill {
+    font-size: 20px;
+    display: none;
+    float: right;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+#btn-remove-top-skill {
+    font-size: 20px;
     display: none;
     float: right;
     margin-left: 10px;
@@ -322,7 +352,20 @@ body {
     display: block;
 }
 
+.top-skill:hover #btn-remove-top-skill {
+    display: block;
+}
+
 #btn-edit-another-skill {
+    font-size: 20px;
+    display: none;
+    float: right;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+#btn-remove-another-skill {
+    font-size: 20px;
     display: none;
     float: right;
     margin-left: 10px;
@@ -333,7 +376,27 @@ body {
     display: block;
 }
 
+.another-skill:hover #btn-remove-another-skill {
+    display: block;
+}
+
+#btn-add-skill {
+    display: none;
+}
+
+.skill:hover #btn-add-skill {
+    display: block;
+}
+
 #btn-edit-education {
+    display: none;
+    font-size: 20px;
+    float:right;
+    margin-right: 5px;
+}
+
+#btn-remove-education {
+    font-size: 20px;
     display: none;
     float:right;
 }
@@ -342,11 +405,43 @@ body {
     display: block;
 }
 
+.education-content:hover #btn-remove-education {
+    display: block;
+}
+
+#btn-add-education {
+    display: none;
+}
+
+.education:hover #btn-add-education {
+    display: block;
+}
+
 #btn-edit-project {
+    font-size: 20px;
+    display: none;
+    float:right;
+    margin-right: 5px;
+}
+
+.project-content:hover #btn-edit-project {
+    display: block;
+}
+
+#btn-remove-project {
+    font-size: 20px;
     display: none;
     float:right;
 }
 
-.project-content:hover #btn-edit-project {
+.project-content:hover #btn-remove-project {
+    display: block;
+}
+
+#btn-add-project {
+    display: none;
+}
+
+.project:hover #btn-add-project {
     display: block;
 }

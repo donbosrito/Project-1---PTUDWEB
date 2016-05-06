@@ -29,7 +29,7 @@
 
                         </div>
 
-                        <!--Form change personal information-->
+                        <!--Dialog edit personal information-->
                         <div id="edit-name" class="modal fade" role="dialog" data-backdrop="static">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -55,17 +55,10 @@
                                                 <input type="text" class="form-control" id="industry" ng-model="subProfile.industry">
                                             </div>
                                             <div class="form-group">
-                                                <label for="current-position">Current position</label>
-                                                <select class="form-control" id="current-position"
-                                                        ng-model="subProfile.currentPosition">
-                                                    <option ng-repeat="job in subProfile.jobs" value="{{job.position}}">{{job.position}}</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="current-company">Current company</label>
-                                                <select class="form-control" id="current-company"
-                                                        ng-model="subProfile.currentCompany">
-                                                    <option ng-repeat="job in subProfile.jobs" value="{{job.company}}">{{job.company}}</option>
+                                                <label for="current-job">Current position</label>
+                                                <select class="form-control" id="current-job"
+                                                        ng-model="subProfile.currentJobIndex">
+                                                    <option ng-repeat="job in subProfile.jobs" value="{{$index}}">{{job.position}} at {{job.company}}</option>
                                                 </select>
                                             </div>
                                         </form>
@@ -78,26 +71,26 @@
                             </div>
                         </div>
 
-						<h2>{{profile.currentPosition}} at {{profile.currentCompany}}</h2>
+						<h2>{{profile.jobs[profile.currentJobIndex].position}} at {{profile.jobs[profile.currentJobIndex].company}}</h2>
 						<ul>
 							<li><a href="#">{{profile.address}}</a></li>
 							<li><a href="#">{{profile.industry}}</a></li>
 						</ul>
-						<dl id="experience" class="dl-horizontal">
-							<dt><a href="#" class="tittle">Current</a></dt>
+						<dl id="dlexperience" class="dl-horizontal">
+							<dt><a href="#experience" class="tittle">Current</a></dt>
 							<dd>
-								<a href="#">{{profile.jobs[0].company}}</a>,
-								<a href="#">{{profile.jobs[1].company}}</a>,
-								<a href="#">{{profile.jobs[2].company}}</a>
+								<a href="#experience-0">{{profile.jobs[0].company}}</a>,
+								<a href="#experience-1">{{profile.jobs[1].company}}</a>,
+								<a href="#experience-2">{{profile.jobs[2].company}}</a>
 							</dd>
-							<dt><a href="#" class="tittle">Previous</a></dt>
+							<dt><a href="#experience-5" class="tittle">Previous</a></dt>
 							<dd>
-								<a href="#">{{profile.jobs[5].company}}</a>,
-								<a href="#">{{profile.jobs[6].company}}</a>,
-								<a href="#">{{profile.jobs[7].company}}</a>
+								<a href="#experience-5">{{profile.jobs[5].company}}</a>,
+								<a href="#experience-6">{{profile.jobs[6].company}}</a>,
+								<a href="#experience-7">{{profile.jobs[7].company}}</a>
 							</dd>
-							<dt><a href="#" class="tittle">Education</a></dt>
-							<dd><a href="#">{{profile.educations[0].school}}</a></dd>
+							<dt><a href="#education" class="tittle">Education</a></dt>
+							<dd><a href="#education-0">{{profile.educations[0].school}}</a></dd>
 
 						</dl>
 					</div>
@@ -152,6 +145,7 @@
 						<p class="summary-content" ng-bind-html="profile.summary">{{profile.summary}}</p>
 					</div>
 
+                    <!--Dialog edit summary-->
                     <div id="edit-summary" class="modal fade" role="dialog" data-backdrop="static">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -175,20 +169,24 @@
                     </div>
 
 					<hr>
-					<div class="experience">
+					<div class="experience" id="experience">
 						<div class="background-tittle">
 							<img src="./picture/experience.png"/>
 							<h3>Experience</h3>
 						</div>
 						<div class="experience-content" ng-repeat="jobs in profile.jobs">
+                            <a id="btn-remove-experience" ng-click="removeExperience($index)"><i class="fa fa-times"></i></a>
                             <a id="btn-edit-experience" data-toggle="modal" data-target="#edit-experience" ng-click="getSelectedJob($index)"><i class="fa fa-pencil"></i></a>
 							<img class="logo" ng-src="{{jobs.logo}}"/>
-							<a class="position" href="#">{{jobs.position}}</a>
+							<a id="experience-{{$index}}" class="position" href="#">{{jobs.position}}</a>
                             <br>
 							<a class="company">{{jobs.company}}</a>
 							<h5 class="time">{{jobs.time}}</h5>
 							<p class="description" ng-bind-html="jobs.description">{{jobs.description}}</p>
 						</div>
+                        <button id="btn-add-experience" type="button" data-toggle="modal" data-target="#add-experience" class="btn btn-primary">Add Experience</button>
+
+                        <!--Dialog edit experience-->
                         <div id="edit-experience" class="modal fade" role="dialog" data-backdrop="static">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -198,20 +196,20 @@
                                     <div class="modal-body">
                                         <form>
                                             <div class="form-group">
-                                                <label for="position">Position</label>
-                                                <input type="text" class="form-control" id="position" ng-model="selectedJob.position">
+                                                <label for="edit-position">Position</label>
+                                                <input type="text" class="form-control" id="edit-position" ng-model="selectedJob.position">
                                             </div>
                                             <div class="form-group">
-                                                <label for="company">Company</label>
-                                                <input type="text" class="form-control" id="company" ng-model="selectedJob.company">
+                                                <label for="edit-company">Company</label>
+                                                <input type="text" class="form-control" id="edit-company" ng-model="selectedJob.company">
                                             </div>
                                             <div class="form-group">
-                                                <label for="time-job">Time</label>
-                                                <input type="text" class="form-control" id="time-job" ng-model="selectedJob.time">
+                                                <label for="edit-time-job">Time</label>
+                                                <input type="text" class="form-control" id="edit-time-job" ng-model="selectedJob.time">
                                             </div>
                                             <div class="form-group">
-                                                <label for="description">Description</label>
-                                                <textarea  class="form-control" rows="10" id="description" ng-model="selectedJob.description"></textarea>
+                                                <label for="edit-description">Description</label>
+                                                <textarea  class="form-control" rows="10" id="edit-description" ng-model="selectedJob.description"></textarea>
                                             </div>
                                         </form>
                                     </div>
@@ -222,6 +220,42 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!--Dialog create experience-->
+                        <div id="add-experience" class="modal fade" role="dialog" data-backdrop="static">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Add experience</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="add-position">Position</label>
+                                                <input type="text" class="form-control" id="add-position" ng-model="newJob.position">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="add-company">Company</label>
+                                                <input type="text" class="form-control" id="add-company" ng-model="newJob.company">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="add-time-job">Time</label>
+                                                <input type="text" class="form-control" id="add-time-job" ng-model="newJob.time">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="add-description">Description</label>
+                                                <textarea  class="form-control" rows="10" id="add-description" ng-model="newJob.description"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addJob()">Add</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reset()">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 					</div>
 					<hr>
 					<div class="skill">
@@ -233,16 +267,17 @@
                                 <div class="skill-content top-skill" ng-repeat="topSkills in profile.topSkills">
                                     <div class="btn-group btn-group-sm btn-skill" role="group" aria-label="skill">
                                         <button type="button" class="btn btn-primary">{{topSkills.point}}</button>
+                                        <a id="btn-remove-top-skill" ng-click="removeTopSkill($index)"><i class="fa fa-times"></i></a>
                                         <a id="btn-edit-top-skill" data-toggle="modal" data-target="#edit-top-skill" ng-click="getSelectedTopSkill($index)"><i class="fa fa-pencil"></i></a>
                                         <button type="button" class="btn btn-default">{{topSkills.skill}}</button>
                                     </div>
                                 </div>
-
+                                <!--Dialog edit top skill-->
                                 <div id="edit-top-skill" class="modal fade" role="dialog" data-backdrop="static">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title">Edit skill</h4>
+                                                <h4 class="modal-title">Edit top skill</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <form>
@@ -252,7 +287,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="top-point">Point</label>
-                                                        <input type="text" class="form-control" id="top-point" ng-model="selectedTopSkill.point">
+                                                        <input type="number" class="form-control" id="top-point" ng-model="selectedTopSkill.point">
                                                     </div>
                                                 </form>
                                             </div>
@@ -269,16 +304,17 @@
                                 <div class="skill-content another-skill" ng-repeat="anotherSkills in profile.anotherSkills">
                                     <div class="btn-group btn-group-sm btn-skill" role="group" aria-label="skill">
                                         <button type="button" class="btn btn-primary">{{anotherSkills.point}}</button>
+                                        <a id="btn-remove-another-skill" ng-click="removeAnotherSkill($index)"><i class="fa fa-times"></i></a>
                                         <a id="btn-edit-another-skill" data-toggle="modal" data-target="#edit-another-skill" ng-click="getSelectedAnotherSkill($index)"><i class="fa fa-pencil"></i></a>
                                         <button type="button" class="btn btn-default">{{anotherSkills.skill}}</button>
                                     </div>
                                 </div>
-
+                                <!--Dialog edit another skill-->
                                 <div id="edit-another-skill" class="modal fade" role="dialog" data-backdrop="static">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title">Edit skill</h4>
+                                                <h4 class="modal-title">Edit another skill</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <form>
@@ -288,7 +324,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="another-point">Point</label>
-                                                        <input type="text" class="form-control" id="another-point" ng-model="selectedAnotherSkill.point">
+                                                        <input type="number" class="form-control" id="another-point" ng-model="selectedAnotherSkill.point">
                                                     </div>
                                                 </form>
                                             </div>
@@ -299,22 +335,53 @@
                                         </div>
                                     </div>
                                 </div>
+                                <br><br>
+                                <button id="btn-add-skill" type="button" data-toggle="modal" data-target="#add-skill" class="btn btn-primary">Add Skill</button>
+                                <!--Dialog create skill-->
+                                <div id="add-skill" class="modal fade" role="dialog" data-backdrop="static">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Add Skill</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="add-skill-name">Skill</label>
+                                                        <input type="text" class="form-control" id="add-skill-name" ng-model="newSkill.skill">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="add-point">Point</label>
+                                                        <input type="number" class="form-control" id="add-point" ng-model="newSkill.point">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addTopSkill()">Add to top skill</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addAnotherSkill()">Add to another skill</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reset()">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 						</div>
 					</div>
 					<hr>
-					<div class="education">
+					<div class="education" id="education">
 						<div class="background-tittle">
 							<img src="./picture/education.png"/>
 							<h3>Education</h3>
-							<div class="education-content" ng-repeat="educations in profile.educations">
+							<div class="education-content" ng-repeat="education in profile.educations">
+                                <a id="btn-remove-education" ng-click="removeEducation($index)"><i class="fa fa-times"></i></a>
                                 <a id="btn-edit-education" data-toggle="modal" data-target="#edit-education" ng-click="getSelectedEducation($index)"><i class="fa fa-pencil"></i></a>
-								<img class="logo" ng-src="{{educations.logo}}"/>
-								<a class="school" href="#">{{educations.school}}</a>
-								<h4 class="falcuty">{{educations.falcuty}}</h4>
-								<h5 class="time">{{educations.time}}</h5>
+								<img class="logo" ng-src="{{education.logo}}"/>
+								<a class="school" id="education-{{$index}}" href="#">{{education.school}}</a>
+								<h4 class="falcuty">{{education.falcuty}}</h4>
+								<h5 class="time">{{education.time}}</h5>
 							</div>
-
+                            <!--Dialog edit education-->
                             <div id="edit-education" class="modal fade" role="dialog" data-backdrop="static">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -344,6 +411,38 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <button id="btn-add-education" type="button" data-toggle="modal" data-target="#add-education" class="btn btn-primary">Add Education</button>
+                            <!--Dialog create education-->
+                            <div id="add-education" class="modal fade" role="dialog" data-backdrop="static">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Add Education</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="add-school">School</label>
+                                                    <input type="text" class="form-control" id="add-school" ng-model="newEducation.school">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="add-falcuty">Falcuty</label>
+                                                    <input type="text" class="form-control" id="add-falcuty" ng-model="newEducation.falcuty">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="add-time-education">Time</label>
+                                                    <input type="text" class="form-control" id="add-time-education" ng-model="newEducation.time">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addEducation()">Add</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reset()">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 						</div>
 					</div>
                     <hr>
@@ -351,13 +450,14 @@
                         <div class="background-tittle">
                             <img src="./picture/projects.png"/>
                             <h3>Project</h3>
-                            <div class="project-content" ng-repeat="projects in profile.projects">
+                            <div class="project-content" ng-repeat="project in profile.projects">
+                                <a id="btn-remove-project" ng-click="removeProject($index)"><i class="fa fa-times"></i></a>
                                 <a id="btn-edit-project" data-toggle="modal" data-target="#edit-project" ng-click="getSelectedProject($index)"><i class="fa fa-pencil"></i></a>
-                                <h3 class="name">{{projects.project}}</h3>
-                                <h5 class="time">{{projects.time}}</h5>
-                                <p class="content" ng-bind-html="projects.content">{{projects.content}}</p>
+                                <h3 class="name">{{project.project}}</h3>
+                                <h5 class="time">{{project.time}}</h5>
+                                <p class="content" ng-bind-html="project.content">{{project.content}}</p>
                             </div>
-
+                            <!--Dialog edit project-->
                             <div id="edit-project" class="modal fade" role="dialog" data-backdrop="static">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -382,6 +482,38 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save()">Save</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reset()">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="btn-add-project" type="button" data-toggle="modal" data-target="#add-project" class="btn btn-primary">Add Project</button>
+                            <!--Dialog create project-->
+                            <div id="add-project" class="modal fade" role="dialog" data-backdrop="static">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Add Project</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="add-project-name">Project</label>
+                                                    <input type="text" class="form-control" id="add-project-name" ng-model="newProject.project">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="add-time-project">Time</label>
+                                                    <input type="text" class="form-control" id="add-time-project" ng-model="newProject.time">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="add-content">Content</label>
+                                                    <textarea  class="form-control" rows="10" id="add-content" ng-model="newProject.content"></textarea>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addProject()">Add</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reset()">Close</button>
                                         </div>
                                     </div>

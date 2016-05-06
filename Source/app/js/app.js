@@ -47,4 +47,63 @@ linkedInApp.controller('profile', function ($scope, $http) {
             $scope.selectedAnotherSkill.point = "99+";
         $scope.save();
     }
+
+    $scope.removeExperience = function ($index) {
+        $scope.subProfile.jobs.splice($index, 1);
+        $scope.save();
+    }
+
+    $scope.removeTopSkill = function ($index) {
+        $scope.subProfile.topSkills.splice($index, 1);
+        $scope.save();
+    }
+
+    $scope.removeAnotherSkill = function ($index) {
+        $scope.subProfile.anotherSkills.splice($index, 1);
+        $scope.save();
+    }
+
+    $scope.removeEducation = function ($index) {
+        $scope.subProfile.educations.splice($index, 1);
+        $scope.save();
+    }
+
+    $scope.removeProject = function ($index) {
+        $scope.subProfile.projects.splice($index, 1);
+        $scope.save();
+    }
+
+    $scope.addJob = function() {
+        $scope.subProfile.jobs.push($scope.newJob);
+        $scope.save();
+        $scope.newJob = null;
+    }
+
+    $scope.addTopSkill = function() {
+        if ($scope.newSkill.point >= 100)
+            $scope.newSkill.point = "99+";
+        $scope.subProfile.topSkills.push($scope.newSkill);
+        $scope.save();
+        $scope.newSkill = null;
+    }
+
+    $scope.addAnotherSkill = function() {
+        if ($scope.newSkill.point >= 100)
+            $scope.newSkill.point = "99+";
+        $scope.subProfile.anotherSkills.push($scope.newSkill);
+        $scope.save();
+        $scope.newSkill = null;
+    }
+
+    $scope.addEducation = function() {
+        $scope.subProfile.educations.push($scope.newEducation);
+        $scope.save();
+        $scope.newEducation = null;
+    }
+
+    $scope.addProject = function() {
+        $scope.subProfile.projects.push($scope.newProject);
+        $scope.save();
+        $scope.newProject = null;
+    }
 });
